@@ -81,11 +81,12 @@ public class ConnexionJpa {
 
         transaction.commit();
 
+        em.clear();
 
-
-
-
-        System.out.println("Connexion établie, schéma généré.");
+        Banque banqueTest = em.find(Banque.class, banque1.getId());
+        for (ClientBanque c : banqueTest.getClients()) {
+            System.out.println(c);
+        }
 
         em.close();
         emf.close();

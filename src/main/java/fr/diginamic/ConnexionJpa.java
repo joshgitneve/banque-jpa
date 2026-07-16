@@ -47,7 +47,7 @@ public class ConnexionJpa {
         cl2.getComptes().add(compte1);
         em.persist(compte1);
 
-        // insérer un client avec plusieurs comptes :
+        // insérer un client avec plusieurs comptes (ajoute seconde compte à cl1):
         Compte compte2 = new AssuranceVie();
         compte2.setNumero("FRAssV999");
         compte2.setSolde(19999.99);

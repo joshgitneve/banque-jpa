@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public abstract class Operation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
     private LocalDateTime date;

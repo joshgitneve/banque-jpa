@@ -14,6 +14,7 @@ public class Virement extends Operation{
         return beneficiaire;
     }
 
+
     public void setBeneficiaire(String beneficiaire) {
         this.beneficiaire = beneficiaire;
     }

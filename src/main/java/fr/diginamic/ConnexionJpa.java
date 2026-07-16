@@ -36,6 +36,10 @@ public class ConnexionJpa {
         cl2.setDateNaissance(LocalDate.parse("1925-10-13"));
         em.persist(cl2);
 
+        //Link la banque avec les clients
+        cl1.setBanque(banque1);
+        cl2.setBanque(banque1);
+
         // create and persist a Compte, linked to client1 (ManyToMany)
         Compte compte1 = new LivretA();
         compte1.setNumero("FRLIVA123");
@@ -58,6 +62,8 @@ public class ConnexionJpa {
         vir1.setMontant(99.00);
         vir1.setMotif("Golden Ostrich");
         vir1.setBeneficiaire("Mother");
+        vir1.setCompte(compte1);
+        compte1.getOperations().add(vir1);
         em.persist(vir1);
 
         Virement vir2 = new Virement();
@@ -65,6 +71,8 @@ public class ConnexionJpa {
         vir2.setMontant(1009.00);
         vir2.setMotif("Gilet pour l'autruche");
         vir2.setBeneficiaire("l'Autruche: Gérard Déplumé");
+        vir2.setCompte(compte1);
+        compte1.getOperations().add(vir2);
         em.persist(vir2);
 
         // insérer des opérations de type opérations sur un compte

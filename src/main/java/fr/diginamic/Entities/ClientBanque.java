@@ -31,6 +31,10 @@ public class ClientBanque {
 
     public ClientBanque(){}
 
+    public void setBanque(Banque banque) {
+        this.banque = banque;
+    }
+
     public List<Compte> getComptes() {
         return comptes;
     }

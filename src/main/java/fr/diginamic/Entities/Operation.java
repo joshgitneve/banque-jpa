@@ -15,7 +15,16 @@ public abstract class Operation {
     private double montant;
     private String motif;
 
+
     public Operation(){}
+
+    @ManyToOne
+    @JoinColumn(name="compte_id")
+    private Compte compte;
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
 
     public Integer getId() {
         return id;

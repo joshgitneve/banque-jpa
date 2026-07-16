@@ -25,6 +25,13 @@ public abstract class Compte {
     @JoinTable(name="client_compte", joinColumns = @JoinColumn(name="compte_id"), inverseJoinColumns = @JoinColumn(name="client_id"))
     private List<ClientBanque> clients = new ArrayList<>();
 
+    @OneToMany(mappedBy = "compte")
+    private List<Operation> operations = new ArrayList<>();
+
+    public List<Operation> getOperations(){
+        return operations;
+    }
+
     public Integer getId() {
         return id;
     }

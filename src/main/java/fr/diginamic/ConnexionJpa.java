@@ -27,6 +27,7 @@ public class ConnexionJpa {
         cl1.setNom("Johnson");
         cl1.setPrenom("Boris");
         cl1.setDateNaissance(LocalDate.parse("1964-05-19"));
+        cl1.setBanque(banque1);
         em.persist(cl1);
 
 
@@ -34,11 +35,12 @@ public class ConnexionJpa {
         cl2.setNom("Thatcher");
         cl2.setPrenom("Maggie");
         cl2.setDateNaissance(LocalDate.parse("1925-10-13"));
+        cl2.setBanque(banque1);
         em.persist(cl2);
 
-        //Link la banque avec les clients
-        cl1.setBanque(banque1);
-        cl2.setBanque(banque1);
+
+
+
 
         // create and persist a Compte, linked to client1 (ManyToMany)
         Compte compte1 = new LivretA();

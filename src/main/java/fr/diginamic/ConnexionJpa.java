@@ -39,10 +39,7 @@ public class ConnexionJpa {
         em.persist(cl2);
 
 
-
-
-
-        // create and persist a Compte, linked to client1 (ManyToMany)
+        // create and persist a Compte, linked to cl1 and cl2(ManyToMany)
         Compte compte1 = new LivretA();
         compte1.setNumero("FRLIVA123");
         compte1.setSolde(1000.0);

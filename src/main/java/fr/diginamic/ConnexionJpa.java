@@ -1,14 +1,13 @@
 package fr.diginamic;
 
+import com.mysql.cj.xdevapi.Client;
 import fr.diginamic.Entities.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ConnexionJpa {
     public static void main(String[] args) {
@@ -22,12 +21,14 @@ public class ConnexionJpa {
         banque1.setNom("Crédit Mutuel");
         em.persist(banque1);
 
-        // create and persist ClientBanque, linked to banque1
+        // create  ClientBanque,
         ClientBanque cl1 = new ClientBanque();
         cl1.setNom("Johnson");
         cl1.setPrenom("Boris");
         cl1.setDateNaissance(LocalDate.parse("1964-05-19"));
+        // link to banque1
         cl1.setBanque(banque1);
+        // and persist
         em.persist(cl1);
 
 
@@ -85,6 +86,15 @@ public class ConnexionJpa {
         Banque banqueTest = em.find(Banque.class, banque1.getId());
         for (ClientBanque c : banqueTest.getClients()) {
             System.out.println(c);
+        }
+
+        TypedQuery<ClientBanque> query = em.createQuery("SELECT c from ClientBanque c JOIN  c.comptes com WHERE com.solde > 0", ClientBanque.class);
+        List<ClientBanque> clients = query.getResultList();
+        if (!clients.isEmpty()){
+            ClientBanque client = clients.getFirst(); // or could pass over list and print each one?
+        }
+        else {
+            System.out.println("Pas de résultat");
         }
 
         em.close();

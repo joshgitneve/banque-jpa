@@ -21,8 +21,8 @@ public abstract class Compte {
 
     public Compte(){}
 
-    @ManyToMany
-    @JoinTable(name="client_compte", joinColumns = @JoinColumn(name="compte_id"), inverseJoinColumns = @JoinColumn(name="client_id"))
+    @ManyToMany // after the first @JoinColumn I have omitted the referencedColumnName - JPA simply therefore assumes the given "name" is referring to the primary key column of the referenced entity, commonly "id"
+    @JoinTable(name="client_compte", joinColumns = @JoinColumn(name="compte_id"), inverseJoinColumns = @JoinColumn(name="client_id", referencedColumnName="id"))
     private List<ClientBanque> clients = new ArrayList<>();
 
     @OneToMany(mappedBy = "compte")
